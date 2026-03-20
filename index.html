@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RateMySub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>RateMySub</h1>
+  <p>Find Out Before the Bell Rings</p>
+</header>
+
+<div class="container">
+  <input type="text" id="search" class="search-bar" placeholder="Search for a substitute...">
+
+  <div id="subList"></div>
+
+  <div id="profile" class="hidden">
+    <button onclick="goBack()">← Back</button>
+    <h2 id="subName"></h2>
+    <p class="rating" id="subRating"></p>
+
+```
+<h3>Quick Stats</h3>
+<ul id="stats"></ul>
+
+<h3>Reviews</h3>
+<div id="reviews"></div>
+
+<h3>Add Review</h3>
+<textarea id="reviewText" placeholder="Write your review..."></textarea>
+<button onclick="addReview()">Submit</button>
+```
+
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
 
