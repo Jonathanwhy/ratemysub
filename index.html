@@ -1,75 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RateMySub</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f7fa;
-      color: #333;
-    }
-
-    header {
-      background: #1e293b;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .search-bar {
-      width: 100%;
-      padding: 12px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-
-    .card {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      cursor: pointer;
-    }
-
-    .rating {
-      font-weight: bold;
-      color: #f59e0b;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    button {
-      padding: 10px 15px;
-      border: none;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      cursor: pointer;
-    }
-
-    textarea {
-      width: 100%;
-      height: 80px;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -88,125 +24,22 @@
     <h2 id="subName"></h2>
     <p class="rating" id="subRating"></p>
 
-    <h3>Quick Stats</h3>
-    <ul id="stats"></ul>
+```
+<h3>Quick Stats</h3>
+<ul id="stats"></ul>
 
-    <h3>Reviews</h3>
-    <div id="reviews"></div>
+<h3>Reviews</h3>
+<div id="reviews"></div>
 
-    <h3>Add Review</h3>
-    <textarea id="reviewText" placeholder="Write your review..."></textarea>
-    <button onclick="addReview()">Submit</button>
+<h3>Add Review</h3>
+<textarea id="reviewText" placeholder="Write your review..."></textarea>
+<button onclick="addReview()">Submit</button>
+```
+
   </div>
 </div>
 
-<script>
-  const defaultSubs = [
-    {
-      name: "Mr. Johnson",
-      rating: 4.2,
-      stats: {
-        strictness: "2/5 (Chill)",
-        workload: "1/5 (Nothing)",
-        phone: "Allowed",
-        food: "Doesn't Care"
-      },
-      reviews: [
-        "Let people eat, super chill",
-        "Didn't say much but easy class"
-      ]
-    },
-    {
-      name: "Ms. Carter",
-      rating: 2.1,
-      stats: {
-        strictness: "5/5 (Very Strict)",
-        workload: "4/5",
-        phone: "Not Allowed",
-        food: "No Food"
-      },
-      reviews: [
-        "Took phones away instantly",
-        "Felt like a test day"
-      ]
-    }
-  ];
-
-  // LOAD FROM LOCAL STORAGE OR USE DEFAULT
-  let subs = JSON.parse(localStorage.getItem("subs")) || defaultSubs;
-
-  const subList = document.getElementById("subList");
-  const profile = document.getElementById("profile");
-
-  function saveData() {
-    localStorage.setItem("subs", JSON.stringify(subs));
-  }
-
-  function renderSubs(list) {
-    subList.innerHTML = "";
-    list.forEach((sub, index) => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `<h3>${sub.name}</h3><p class="rating">⭐ ${sub.rating}</p>`;
-      div.onclick = () => openProfile(index);
-      subList.appendChild(div);
-    });
-  }
-
-  function openProfile(index) {
-    const sub = subs[index];
-    subList.classList.add("hidden");
-    profile.classList.remove("hidden");
-
-    document.getElementById("subName").innerText = sub.name;
-    document.getElementById("subRating").innerText = "⭐ " + sub.rating;
-
-    const stats = document.getElementById("stats");
-    stats.innerHTML = "";
-    for (let key in sub.stats) {
-      const li = document.createElement("li");
-      li.innerText = key + ": " + sub.stats[key];
-      stats.appendChild(li);
-    }
-
-    renderReviews(sub);
-    window.currentSub = index;
-  }
-
-  function renderReviews(sub) {
-    const reviewDiv = document.getElementById("reviews");
-    reviewDiv.innerHTML = "";
-    sub.reviews.forEach(r => {
-      const p = document.createElement("p");
-      p.innerText = "⭐ " + r;
-      reviewDiv.appendChild(p);
-    });
-  }
-
-  function addReview() {
-    const text = document.getElementById("reviewText").value;
-    if (!text) return;
-
-    subs[window.currentSub].reviews.push(text);
-    document.getElementById("reviewText").value = "";
-
-    saveData(); // SAVE HERE
-    renderReviews(subs[window.currentSub]);
-  }
-
-  function goBack() {
-    profile.classList.add("hidden");
-    subList.classList.remove("hidden");
-  }
-
-  document.getElementById("search").addEventListener("input", (e) => {
-    const value = e.target.value.toLowerCase();
-    const filtered = subs.filter(s => s.name.toLowerCase().includes(value));
-    renderSubs(filtered);
-  });
-
-  renderSubs(subs);
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
