@@ -1,12 +1,12 @@
-const subs = [
+const defaultSubs = [
 {
 name: "Mr. Johnson",
 rating: 4.2,
 stats: {
-strictness: "2/5 (Chill)",
-workload: "1/5 (Nothing)",
-phone: "Allowed",
-food: "Doesn't Care"
+Strictness: "2/5 (Chill)",
+Workload: "1/5 (Nothing)",
+"Phone Policy": "Allowed 📱",
+"Food Policy": "Doesn't Care 🍔"
 },
 reviews: [
 "Let people eat, super chill",
@@ -17,10 +17,10 @@ reviews: [
 name: "Ms. Carter",
 rating: 2.1,
 stats: {
-strictness: "5/5 (Very Strict)",
-workload: "4/5",
-phone: "Not Allowed",
-food: "No Food"
+Strictness: "5/5 (Very Strict)",
+Workload: "4/5",
+"Phone Policy": "Not Allowed 📵",
+"Food Policy": "No Food 🚫"
 },
 reviews: [
 "Took phones away instantly",
@@ -29,8 +29,15 @@ reviews: [
 }
 ];
 
+// Load from localStorage OR use default
+let subs = JSON.parse(localStorage.getItem("subs")) || defaultSubs;
+
 const subList = document.getElementById("subList");
 const profile = document.getElementById("profile");
+
+function saveData() {
+localStorage.setItem("subs", JSON.stringify(subs));
+}
 
 function renderSubs(list) {
 subList.innerHTML = "";
@@ -79,6 +86,8 @@ if (!text) return;
 
 subs[window.currentSub].reviews.push(text);
 document.getElementById("reviewText").value = "";
+
+saveData(); // saves to browser
 renderReviews(subs[window.currentSub]);
 }
 
@@ -94,4 +103,3 @@ renderSubs(filtered);
 });
 
 renderSubs(subs);
-
