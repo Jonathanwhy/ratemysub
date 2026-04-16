@@ -67,3 +67,19 @@ padding: 10px;
 border-radius: 8px;
 border: 1px solid #ccc;
 }
+
+/* ⭐ STAR STYLES */
+#starInput {
+font-size: 28px;
+margin-bottom: 10px;
+cursor: pointer;
+}
+
+.star {
+color: #ccc;
+transition: 0.2s;
+}
+
+.star.selected {
+color: gold;
+}
