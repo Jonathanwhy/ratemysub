@@ -37,23 +37,21 @@ const profile = document.getElementById("profile");
 
 let selectedRating = 0;
 
-// ⭐ FIXED: wait until page loads
 document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll(".star").forEach(star => {
 star.addEventListener("click", () => {
 selectedRating = parseInt(star.getAttribute("data-value"));
-
-```
   document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
 
   for (let i = 0; i < selectedRating; i++) {
     document.querySelectorAll(".star")[i].classList.add("selected");
   }
 });
-```
+
 
 });
 });
+
 
 function saveData() {
 localStorage.setItem("subs", JSON.stringify(subs));
