@@ -59,14 +59,21 @@ localStorage.setItem("subs", JSON.stringify(subs));
 
 function renderSubs(list) {
 subList.innerHTML = "";
-list.forEach((sub, index) => {
+
+list.forEach(sub => {
 const div = document.createElement("div");
 div.className = "card";
 div.innerHTML = `<h3>${sub.name}</h3><p class="rating">⭐ ${sub.rating}</p>`;
-div.onclick = () => openProfile(index);
+
+
+div.onclick = () => openProfile(subs.indexOf(sub)); // 🔥 FIX
+
 subList.appendChild(div);
+
+
 });
 }
+
 
 function openProfile(index) {
 const sub = subs[index];
@@ -128,12 +135,14 @@ renderReviews(subs[window.currentSub]);
 function goBack() {
 profile.classList.add("hidden");
 subList.classList.remove("hidden");
-}
+document.getElementById("search").value = "";
 
+renderSubs(subs);
+}
 document.getElementById("search").addEventListener("input", (e) => {
 const value = e.target.value.toLowerCase();
 const filtered = subs.filter(s => s.name.toLowerCase().includes(value));
-renderSubs(filtered);
+renderSubs(filtered);renderSubs(filtered);
 });
 
 renderSubs(subs);
