@@ -9,8 +9,8 @@ Workload: "1/5 (Nothing)",
 "Food Policy": "Doesn't Care 🍔"
 },
 reviews: [
-  { text: "Let people eat, super chill", rating: 5 },
-  { text: "Didn't say much but easy class", rating: 4 }
+{ text: "Let people eat, super chill", rating: 5 },
+{ text: "Didn't say much but easy class", rating: 4 }
 ]
 },
 {
@@ -23,17 +23,37 @@ Workload: "4/5",
 "Food Policy": "No Food 🚫"
 },
 reviews: [
-"Took phones away instantly",
-"Felt like a test day"
+{ text: "Took phones away instantly", rating: 2 },
+{ text: "Felt like a test day", rating: 1 }
 ]
 }
 ];
 
-// Load from localStorage OR use default
+// Load from storage
 let subs = JSON.parse(localStorage.getItem("subs")) || defaultSubs;
 
 const subList = document.getElementById("subList");
 const profile = document.getElementById("profile");
+
+let selectedRating = 0;
+
+// ⭐ FIXED: wait until page loads
+document.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll(".star").forEach(star => {
+star.addEventListener("click", () => {
+selectedRating = parseInt(star.getAttribute("data-value"));
+
+```
+  document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+
+  for (let i = 0; i < selectedRating; i++) {
+    document.querySelectorAll(".star")[i].classList.add("selected");
+  }
+});
+```
+
+});
+});
 
 function saveData() {
 localStorage.setItem("subs", JSON.stringify(subs));
@@ -76,29 +96,23 @@ reviewDiv.innerHTML = "";
 
 sub.reviews.forEach(r => {
 const p = document.createElement("p");
-
-```
-let stars = "⭐".repeat(r.rating);
-
+const stars = "⭐".repeat(r.rating);
 p.innerText = stars + " - " + r.text;
 reviewDiv.appendChild(p);
-```
-
 });
 }
-
 
 function addReview() {
 const text = document.getElementById("reviewText").value;
 
-if (!text || selectedRating == 0) {
-alert("Add a rating and review");
+if (!text || selectedRating === 0) {
+alert("Add rating and review");
 return;
 }
 
 subs[window.currentSub].reviews.push({
 text: text,
-rating: parseInt(selectedRating)
+rating: selectedRating
 });
 
 document.getElementById("reviewText").value = "";
@@ -109,25 +123,6 @@ document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
 saveData();
 renderReviews(subs[window.currentSub]);
 }
-
-
-let selectedRating = 0;
-
-document.querySelectorAll(".star").forEach(star => {
-star.addEventListener("click", () => {
-selectedRating = star.getAttribute("data-value");
-
-```
-document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
-
-for (let i = 0; i < selectedRating; i++) {
-  document.querySelectorAll(".star")[i].classList.add("selected");
-}
-```
-
-});
-});
-
 
 function goBack() {
 profile.classList.add("hidden");
