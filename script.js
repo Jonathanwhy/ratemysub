@@ -96,7 +96,10 @@ reviewDiv.innerHTML = "";
 
 sub.reviews.forEach(r => {
 const p = document.createElement("p");
-const stars = "⭐".repeat(r.rating);
+let stars = "";
+for (let i = 0; i < r.rating; i++) {
+  stars += "★";
+}
 p.innerText = stars + " - " + r.text;
 reviewDiv.appendChild(p);
 });
