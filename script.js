@@ -9,8 +9,8 @@ Workload: "1/5 (Nothing)",
 "Food Policy": "Doesn't Care 🍔"
 },
 reviews: [
-"Let people eat, super chill",
-"Didn't say much but easy class"
+  { text: "Let people eat, super chill", rating: 5 },
+  { text: "Didn't say much but easy class", rating: 4 }
 ]
 },
 {
@@ -73,23 +73,61 @@ window.currentSub = index;
 function renderReviews(sub) {
 const reviewDiv = document.getElementById("reviews");
 reviewDiv.innerHTML = "";
+
 sub.reviews.forEach(r => {
 const p = document.createElement("p");
-p.innerText = "⭐ " + r;
+
+```
+let stars = "⭐".repeat(r.rating);
+
+p.innerText = stars + " - " + r.text;
 reviewDiv.appendChild(p);
+```
+
 });
 }
 
+
 function addReview() {
 const text = document.getElementById("reviewText").value;
-if (!text) return;
 
-subs[window.currentSub].reviews.push(text);
+if (!text || selectedRating == 0) {
+alert("Add a rating and review");
+return;
+}
+
+subs[window.currentSub].reviews.push({
+text: text,
+rating: parseInt(selectedRating)
+});
+
 document.getElementById("reviewText").value = "";
+selectedRating = 0;
 
-saveData(); // saves to browser
+document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+
+saveData();
 renderReviews(subs[window.currentSub]);
 }
+
+
+let selectedRating = 0;
+
+document.querySelectorAll(".star").forEach(star => {
+star.addEventListener("click", () => {
+selectedRating = star.getAttribute("data-value");
+
+```
+document.querySelectorAll(".star").forEach(s => s.classList.remove("selected"));
+
+for (let i = 0; i < selectedRating; i++) {
+  document.querySelectorAll(".star")[i].classList.add("selected");
+}
+```
+
+});
+});
+
 
 function goBack() {
 profile.classList.add("hidden");
