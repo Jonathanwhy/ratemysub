@@ -1,30 +1,44 @@
 const defaultSubs = [
 {
-name: "Mr. Johnson",
-rating: 4.2,
+name: "Mr. Grunc",
+rating: 1,
 stats: {
-Strictness: "2/5 (Chill)",
-Workload: "1/5 (Nothing)",
-"Phone Policy": "Allowed 📱",
-"Food Policy": "Doesn't Care 🍔"
+Strictness: "5/5 (No Talking)",
+Workload: "4/5 (Have to stay on task)",
+"Phone Policy": "Not Allowed 📵",
+"Food Policy": "NO FOOD ❌"
 },
 reviews: [
-{ text: "Let people eat, super chill", rating: 5 },
-{ text: "Didn't say much but easy class", rating: 4 }
+{ text: "Was singling out kelan for some reason...", rating: 1 },
+{ text: "Felt like an AP test", rating: 1 }
 ]
 },
 {
-name: "Ms. Carter",
-rating: 2.1,
+name: "Mr. Unc",
+rating: 5,
 stats: {
-Strictness: "5/5 (Very Strict)",
-Workload: "4/5",
-"Phone Policy": "Not Allowed 📵",
-"Food Policy": "No Food 🚫"
+Strictness: "0/5 (Chiller than ice)",
+Workload: "3/5 (Smash Bros)",
+"Phone Policy": "Allowed, plus prometheon 📱",
+"Food Policy": "Doesn't Care 🍔"
 },
 reviews: [
-{ text: "Took phones away instantly", rating: 2 },
-{ text: "Felt like a test day", rating: 1 }
+{ text: ""Im mister Unc, Im old"", rating: 5 },
+{ text: "Steals our donuts", rating: 2 }
+]
+},
+{
+name: "Mr.Chen",
+rating: 5,
+stats: {
+Strictness: "2/5 (Wants you to do your work)",
+Workload: "2/5 (Dances sometimes)",
+"Phone Policy": "Super chill about it 😇",
+"Food Policy": "Clean up after yourself 😋"
+},
+reviews: [
+{ text: "THE ABSOLUTE GOAT", rating: 5 },
+{ text: "I LOVE MR CHEN", rating: 5 }
 ]
 }
 ];
