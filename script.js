@@ -23,7 +23,7 @@ Workload: "3/5 (Smash Bros)",
 "Food Policy": "Doesn't Care 🍔"
 },
 reviews: [
-{ text: ""Im mister Unc, Im old"", rating: 5 },
+{ text: "Im mister Unc, Im old", rating: 5 },
 { text: "Steals our donuts", rating: 2 }
 ]
 },
